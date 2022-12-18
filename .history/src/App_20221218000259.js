@@ -1,0 +1,28 @@
+import Todo from "./components/Todo";
+import { useState } from "react";
+import { TodoList } from "../../todo-app.github.io/src/TodoList";
+
+
+function App() {
+  const [items, setItems] = useState([]);
+  
+  const AddTask = text => {
+    setItems([
+      ...items,
+      {
+        id: crypto.randomUUID(),
+        num: items.length +1,
+        text: text,
+        isComplete: false
+      }
+    ]);
+  }
+  return (
+    <div className="App">
+     <Todo onAdd={AddTask}/>
+     <TodoList />
+    </div>
+  );
+}
+
+export default App;

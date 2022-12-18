@@ -1,0 +1,42 @@
+import React from "react";
+import { AiOutlineMinusCircle } from "react-icons/ai";
+
+export const TodoList = ({ text, onRemove, onComplete,onCompleteAll }) => {
+  const taskQty = text.length;
+  const taskComplete = text.filter(task => task.isCompleted).length;
+
+  return ( 
+    <ul className="container-list">
+      <div className="info-bar">
+        <p>Create Task<span>{taskQty}</span></p>
+        <p>Complete<span>{taskComplete} of {taskQty}</span></p>
+      </div>
+      {text.map((item, taskId,) => (
+        <div key={item.id} className="list-index">
+          <div className="text-container">
+            <input title="Mark as complete" 
+                   className="radio" type="checkbox" 
+                   checked={item.isCompleted}
+                   onChange={()=> onComplete(item.id)}>
+                   
+            </input>
+            <li >{item.text}</li>
+          </div>
+          <button onClick={(e) => {
+            onRemove(taskId)}}title="Remove" className="btn-minus">
+            <AiOutlineMinusCircle />
+          </button>
+        </div>
+      ))}
+      
+        {text.map((item) => (
+           <div className="footer-container">
+          <button key={item.id} onChange={() => onCompleteAll() } checked={item.isCompleted}>Mark all as complete</button>
+          <p>{taskQty} items left</p>
+          </div>
+        ))}
+        
+      
+    </ul>
+  );
+};
