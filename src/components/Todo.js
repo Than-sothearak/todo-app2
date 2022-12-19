@@ -119,7 +119,7 @@ setItems(newItems);
   };
 
   return (
-    <div className="todo-main">
+    <div className="main-container">
       <h1>TODO</h1>
       <form onSubmit={handleSubmit} className="input-container">
         <input

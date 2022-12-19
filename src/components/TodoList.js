@@ -13,7 +13,7 @@ export const TodoList = ({
 
   return (
     <ul className="container-list">
-      <div className="info-bar">
+      <div className="list-bar">
         <p>
           Create Task<span>{taskQty}</span>
         </p>
@@ -25,11 +25,11 @@ export const TodoList = ({
         </p>
       </div>
       {text.map((item, taskId) => (
-        <div key={item.id} className="list-index">
+        <div key={item.id} className="list-container">
           <div className="text-container">
             <input
               title="Mark as complete"
-              className="radio"
+              className="check-box"
               type="checkbox"
               checked={item.isCompleted}
               onChange={() => onComplete(item.id)}
@@ -46,7 +46,7 @@ export const TodoList = ({
             title="Remove"
             className="btn-minus"
           >
-            <RiDeleteBin5Fill size={13} />
+            <RiDeleteBin5Fill size={24} />
           </button>
         </div>
       ))}
