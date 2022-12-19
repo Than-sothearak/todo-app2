@@ -46,7 +46,7 @@ export const TodoList = ({
             title="Remove"
             className="btn-minus"
           >
-            <RiDeleteBin5Fill size={24} />
+            <RiDeleteBin5Fill />
           </button>
         </div>
       ))}
