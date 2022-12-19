@@ -1,20 +1,30 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { AiOutlinePlusCircle } from "react-icons/ai";
 import { TodoList } from "./TodoList";
 
+//get items from local
+const getLocalItems = () => {
+  let list = localStorage.getItem('lists');
+ 
+  if(list) {
+    return JSON.parse(localStorage.getItem('lists'));
+  } else {
+    return [];
+  }
+}
 const Todo = () => {
-  const [items, setItems] = useState([]);
-  const [title, setTitle] = useState("");
+  const [items, setItems] = useState(getLocalItems());
+  const [inputData, setInputData] = useState("");
   const taskQty = items.length
   const taskComplete = items.filter(task => task.isCompleted).length;
   
   const handleSubmit = (event) => {
     event.preventDefault();
-    if (title.length === 0) {
+    if (inputData.length === 0) {
       return alert("Please input value!");
     }
-    AddTask(title);
-    setTitle("");
+    AddTask(inputData);
+    setInputData("");
 
   };
   const dateInfos = () => {
@@ -108,7 +118,7 @@ setItems(newItems);
   }
 
   const onChangeTitle = (e) => {
-    setTitle(e.target.value);
+    setInputData(e.target.value);
   };
 
   const handleRemove = (taskId) => {
@@ -117,6 +127,10 @@ setItems(newItems);
     setItems(newItems);
     
   };
+  //add data to localStorage
+  useEffect(() => {
+    localStorage.setItem('lists', JSON.stringify(items))
+  }, [items])
 
   return (
     <div className="main-container">
@@ -125,7 +139,7 @@ setItems(newItems);
         <input
           onChange={onChangeTitle}
           placeholder="Create a new todo..."
-          value={title}
+          value={inputData}
         ></input>
         <button title="Add todo" className="btn">
           <AiOutlinePlusCircle />
