@@ -5,10 +5,10 @@ import { TodoList } from "./TodoList";
 //get items from local
 const getLocalItems = () => {
   let list = localStorage.getItem('lists');
- 
   if(list) {
-    return JSON.parse(localStorage.getItem('lists'));
-  } else {
+    return JSON.parse(list);
+  } 
+  else {
     return [];
   }
 }
@@ -77,7 +77,7 @@ const Todo = () => {
     setItems([
       ...items,
       {
-        id: crypto.randomUUID(),
+        id: Date.now(),
         text: text,
         isCompleted: false
       },
