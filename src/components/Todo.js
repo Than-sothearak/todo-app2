@@ -18,6 +18,23 @@ const Todo = () => {
   const taskQty = items.length
   const taskComplete = items.filter(task => task.isCompleted).length;
   
+  //get data from user input
+  const onChangeTitle = (e) => {
+    setInputData(e.target.value);
+  };
+  //add data get from input to array
+  const AddTask = (text) => {
+    setItems([
+      ...items,
+      {
+        id: Date.now(),
+        text: text,
+        isCompleted: false
+      },
+    ]);
+  };
+  
+  //submit data and reset input
   const handleSubmit = (event) => {
     event.preventDefault();
     if (inputData.length === 0) {
@@ -27,6 +44,7 @@ const Todo = () => {
     setInputData("");
 
   };
+  
   const dateInfos = () => {
     const date = new Date();
     const day = date.getDate();
@@ -73,17 +91,7 @@ const Todo = () => {
     return `${day}, ${month} ${year}`;
 }
 
-  const AddTask = (text) => {
-    setItems([
-      ...items,
-      {
-        id: Date.now(),
-        text: text,
-        isCompleted: false
-      },
-    ]);
-  };
-
+  //check if user click on check and uncheck
   const handleCheck = (taskId) => {
     const newItems = items.map(task => {
     if(task.id === taskId) {
@@ -96,7 +104,8 @@ const Todo = () => {
     })
     setItems(newItems);
   }
-
+  
+  //for 1 click to mark all as completed
   const handleCheckAll = () => {
     const newItems = items.map(task => {
       if(!task.isCompleted) {
@@ -116,14 +125,11 @@ const Todo = () => {
 }) 
 setItems(newItems);
   }
-
-  const onChangeTitle = (e) => {
-    setInputData(e.target.value);
-  };
-
+  
+  //remove todo list
   const handleRemove = (taskId) => {
     const newItems = items.filter(task => task.id !== taskId)
-    newItems.splice(taskId, 1);
+    console.log({newItems})
     setItems(newItems);
     
   };
@@ -132,26 +138,28 @@ setItems(newItems);
     localStorage.setItem('lists', JSON.stringify(items))
   }, [items])
 
+ 
   return (
     <div className="main-container">
       <h1>TODO</h1>
-      <form onSubmit={handleSubmit} className="input-container">
+      <form className="input-container" 
+            onSubmit={handleSubmit} >
         <input
           onChange={onChangeTitle}
           placeholder="Create a new todo..."
-          value={inputData}
-        ></input>
+          value={inputData}>
+        </input>
         <button title="Add todo" className="btn">
           <AiOutlinePlusCircle />
         </button>
       </form>
       
-      <TodoList text={items}
-      showDate={dateInfos} 
-      onRemove={handleRemove} 
-      onComplete={handleCheck}
-      onCompleteAll={handleCheckAll}
-     />
+      <TodoList 
+           inputData={items}
+           showDate={dateInfos} 
+           onRemove={handleRemove} 
+           onComplete={handleCheck}
+           onCompleteAll={handleCheckAll} />
     </div>
   );
 };

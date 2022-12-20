@@ -2,14 +2,14 @@ import React from "react";
 import { RiDeleteBin5Fill } from "react-icons/ri";
 
 export const TodoList = ({
-  text,
+  inputData,
   onRemove,
   onComplete,
   onCompleteAll,
   showDate,
 }) => {
-  const taskQty = text.length;
-  const taskComplete = text.filter((task) => task.isCompleted).length;
+  const taskQty = inputData.length;
+  const taskComplete = inputData.filter((task) => task.isCompleted).length;
 
   return (
     <ul className="container-list">
@@ -24,7 +24,7 @@ export const TodoList = ({
           </span>
         </p>
       </div>
-      {text.map((item, taskId) => (
+      {inputData.map((item,) => (
         <div key={item.id} className="list-container">
           <div className="text-container">
             <input
@@ -36,16 +36,16 @@ export const TodoList = ({
             ></input>
             <div>
               <li className="li-info">{item.text}</li>
-              <li className="li-info-date">{showDate()}</li></div>
-            
+              <li className="li-info-date">{showDate()}</li>
+            </div>
           </div>
           <button
-            onClick={(e) => {
-              onRemove(taskId);
+            onClick={() => {
+              onRemove(item.id);
             }}
             title="Remove"
-            className="btn-minus"
-          >
+            className="btn-minus">
+          
             <RiDeleteBin5Fill />
           </button>
         </div>
