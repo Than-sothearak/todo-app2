@@ -8,9 +8,17 @@ export const TodoList = ({
   onCompleteAll,
   showDate,
 }) => {
+ 
   const taskQty = inputData.length;
   const taskComplete = inputData.filter((task) => task.isCompleted).length;
-
+  
+  const reRender = () => {
+    if (taskQty === taskComplete) {
+      return 'Unmark all'
+    } else {
+      return 'Mark all as complete'
+    }
+  }
   return (
     <ul className="container-list">
       <div className="list-bar">
@@ -52,7 +60,7 @@ export const TodoList = ({
       ))}
 
       <div className="footer-container">
-        <button onClick={onCompleteAll}>Mark all as complete</button>
+        <button onClick={onCompleteAll}>{reRender()}</button>
         <p>{taskQty - taskComplete} items left</p>
       </div>
     </ul>

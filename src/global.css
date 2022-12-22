@@ -118,6 +118,10 @@ code {
   padding-left: 15px;
   text-align: start;
 }
+.text-container input {
+  cursor: pointer;
+  transform: scale(1.5);
+}
 .btn-minus {
   background: transparent;
   border: none;
@@ -147,13 +151,14 @@ code {
   justify-content: space-between;
   padding-left: 20px;
   padding-right: 20px;
+
 }
+
 .footer-container p {
- 
   color: #7f8c8d;
 }
 .footer-container button {
-  
+  font-size: 18px;
   color: #7f8c8d;
   background: none;
 	border: none;
@@ -184,6 +189,9 @@ code {
   }
   .btn-minus {
     font-size: 20px;
+  }
+  .footer-container button {
+    font-size: 14px;
   }
  
 }

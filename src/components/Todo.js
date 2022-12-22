@@ -22,7 +22,7 @@ const Todo = () => {
   const onChangeTitle = (e) => {
     setInputData(e.target.value);
   };
-  //add data get from input to array
+  //add userInput get from input to object Name: items
   const AddTask = (text) => {
     setItems([
       ...items,
@@ -34,7 +34,7 @@ const Todo = () => {
     ]);
   };
   
-  //submit data and reset input
+  //submit data to arrays and reset input
   const handleSubmit = (event) => {
     event.preventDefault();
     if (inputData.length === 0) {
