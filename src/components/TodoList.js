@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { RiDeleteBin5Fill } from "react-icons/ri";
 
 export const TodoList = ({
@@ -8,12 +8,14 @@ export const TodoList = ({
   onCompleteAll,
   showDate,
 }) => {
- 
+  const [num, setNum] = useState(0);
   const taskQty = inputData.length;
   const taskComplete = inputData.filter((task) => task.isCompleted).length;
   
   const reRender = () => {
-    if (taskQty === taskComplete) {
+    if (taskQty === 0) {
+      return ''
+    } else if (taskQty === taskComplete) {
       return 'Unmark all'
     } else {
       return 'Mark all as complete'
@@ -32,9 +34,10 @@ export const TodoList = ({
           </span>
         </p>
       </div>
-      {inputData.map((item,) => (
+      {inputData.map((item, index) => (
         <div key={item.id} className="list-container">
           <div className="text-container">
+            
             <input
               title="Mark as complete"
               className="check-box"
@@ -43,7 +46,9 @@ export const TodoList = ({
               onChange={() => onComplete(item.id)}
             ></input>
             <div>
-              <li className="li-info">{item.text}</li>
+           
+              <li className="li-info"> {index +1}. {item.text}</li>
+
               <li className="li-info-date">{showDate()}</li>
             </div>
           </div>

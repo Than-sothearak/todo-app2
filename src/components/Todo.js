@@ -131,8 +131,8 @@ setItems(newItems);
     const newItems = items.filter(task => task.id !== taskId)
     console.log({newItems})
     setItems(newItems);
-    
   };
+  
   //add data to localStorage
   useEffect(() => {
     localStorage.setItem('lists', JSON.stringify(items))
