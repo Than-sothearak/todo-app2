@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { RiDeleteBin5Fill } from "react-icons/ri";
 
 export const TodoList = ({
@@ -8,7 +8,7 @@ export const TodoList = ({
   onCompleteAll,
   showDate,
 }) => {
-
+  const [num, setNum] = useState(0);
   const taskQty = inputData.length;
   const taskComplete = inputData.filter((task) => task.isCompleted).length;
   

@@ -87,7 +87,6 @@ const Todo = () => {
         case 11:
             month = "December";
             break;
-            default : break
     }
     return `${day}, ${month} ${year}`;
 }
